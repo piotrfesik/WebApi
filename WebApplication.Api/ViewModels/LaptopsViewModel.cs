@@ -7,9 +7,7 @@ namespace WebApplication.Api.ViewModels
         public int Id { get; set; }
         public string Name { get; set; }
         public int BrandId { get; set; }
-        // [BindNever]
         public BrandViewModel Brand { get; set; }
-        // [BindNever]
         public IList<LaptopConfigurationViewModel> LaptopConfiguration{ get; set; }
     }
 }

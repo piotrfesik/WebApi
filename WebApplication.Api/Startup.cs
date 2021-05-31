@@ -61,6 +61,7 @@ namespace WebApplication.Api
             services.AddScoped<IConfigurationService, ConfigurationService>();
             services.AddScoped<ILaptopService, LaptopService>();
             services.AddScoped<IShoppingBasketService, ShoppingBasketService>();
+            services.AddScoped<IBasketRepository ,BasketRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

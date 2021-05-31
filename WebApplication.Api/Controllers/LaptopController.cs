@@ -26,7 +26,7 @@ namespace WebApplication.Api.Controllers
         ///     Returns all Laptops 
         /// </summary>
         /// <returns></returns>
-        [HttpGet("get")]
+        [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<List<LaptopsViewModel>>> GetAllLaptops()
@@ -41,7 +41,7 @@ namespace WebApplication.Api.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost("add")]
+        [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<LaptopsViewModel>> CreateLaptop(LaptopsViewModel model)

@@ -25,7 +25,7 @@ namespace WebApplication.Api.Controllers
         ///     Add Laptop in Basket 
         /// </summary>
         /// <returns></returns>
-        [HttpPost("add")]
+        [HttpPost("")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<BasketViewModel>> AddLaptop(LaptopsViewModel model)
