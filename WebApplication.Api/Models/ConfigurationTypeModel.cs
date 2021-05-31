@@ -1,8 +1,8 @@
 using WebApplication.Data.Infrastructure;
 
-namespace WebApplication.Api.ViewModels
+namespace WebApplication.Api.Models
 {
-    public class ConfigurationTypeViewModel
+    public class ConfigurationTypeModel
     {
         public int Id { get; set; }
         public ConfigurationTypeEnum TypeName { get; set; }

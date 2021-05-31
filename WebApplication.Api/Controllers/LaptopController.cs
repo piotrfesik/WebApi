@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Api.Infrastructure.Errors;
-using WebApplication.Api.ViewModels;
+using WebApplication.Api.Models;
 using WebApplication.Services.DtoModels;
 using WebApplication.Services.Services.LaptopService;
 
@@ -29,10 +29,10 @@ namespace WebApplication.Api.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<List<LaptopsViewModel>>> GetAllLaptops()
+        public async Task<ActionResult<List<LaptopsModel>>> GetAllLaptops()
         {
             var data = await _laptopService.GetAllLaptops();
-            var view = _mapper.Map<List<LaptopsViewModel>>(data);
+            var view = _mapper.Map<List<LaptopsModel>>(data);
             return Ok(view);
         }
 
@@ -44,14 +44,14 @@ namespace WebApplication.Api.Controllers
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<LaptopsViewModel>> CreateLaptop(LaptopsViewModel model)
+        public async Task<ActionResult<LaptopsModel>> CreateLaptop(LaptopsModel model)
         {
             var dto = _mapper.Map<LaptopsDtoModel>(model);
             var data = await  _laptopService.CreateLaptop(dto);
             if (data == null) return BadRequest(Errors.AddErrorToModelState(ErrorsModelConst.ObjectIsExistKey, 
                 ErrorsModelConst.ObjectIsExist + ": " + model.Name
                 , ModelState));
-            var view = _mapper.Map<LaptopsViewModel>(data);
+            var view = _mapper.Map<LaptopsModel>(data);
             return Ok(view);
         }
     }

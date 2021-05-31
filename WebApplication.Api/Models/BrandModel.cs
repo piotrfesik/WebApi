@@ -1,6 +1,6 @@
-namespace WebApplication.Api.ViewModels
+namespace WebApplication.Api.Models
 {
-    public class BrandViewModel
+    public class BrandModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

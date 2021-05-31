@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Api.Infrastructure.Errors;
-using WebApplication.Api.ViewModels;
+using WebApplication.Api.Models;
 using WebApplication.Services.Services.ShoppingBasket;
 
 namespace WebApplication.Api.Controllers
@@ -28,14 +28,14 @@ namespace WebApplication.Api.Controllers
         [HttpPost("")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<BasketViewModel>> AddLaptop(LaptopsViewModel model)
+        public async Task<ActionResult<BasketModel>> AddLaptop(LaptopsModel model)
         {
             var data = await _shoppingBasketService.AddLaptop(model.Id);
             if (data == null)
                 return BadRequest(Errors.AddErrorToModelState(ErrorsModelConst.ObjectIsExistKey,
                     ErrorsModelConst.ObjectIsExist + ": " + model.Name
                     , ModelState));
-            return Ok(_mapper.Map<LaptopsViewModel>(data));
+            return Ok(_mapper.Map<LaptopsModel>(data));
         }
 
         /// <summary>
@@ -45,10 +45,10 @@ namespace WebApplication.Api.Controllers
         [HttpGet("get")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<List<LaptopsViewModel>>> GetLaptopList()
+        public async Task<ActionResult<List<LaptopsModel>>> GetLaptopList()
         {
             var data = await _shoppingBasketService.GetLaptopList();
-            var view = _mapper.Map<List<LaptopsViewModel>>(data);
+            var view = _mapper.Map<List<LaptopsModel>>(data);
             return Ok(view);
         }
 
@@ -59,7 +59,7 @@ namespace WebApplication.Api.Controllers
         [HttpGet("clear")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<List<LaptopsViewModel>>> RemoveLaptopList()
+        public async Task<ActionResult<List<LaptopsModel>>> RemoveLaptopList()
         {
             await _shoppingBasketService.RemoveLaptopList();
             return Ok();

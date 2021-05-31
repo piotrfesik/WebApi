@@ -1,5 +1,5 @@
 using AutoMapper;
-using WebApplication.Api.ViewModels;
+using WebApplication.Api.Models;
 using WebApplication.Data.DataModels.Configurations;
 using WebApplication.Data.DataModels.Laptops;
 using WebApplication.Services.DtoModels;
@@ -44,7 +44,7 @@ namespace WebApplication.Api.Configuration.AutoMapper
                     opts =>
                         opts.MapFrom(src => src.Name));
 
-            CreateMap<ConfigurationItemViewModel, ConfigurationItemDtoModel>()
+            CreateMap<ConfigurationItemModel, ConfigurationItemDtoModel>()
                 .ForMember(dest => dest.Id,
                     opts =>
                         opts.MapFrom(src => src.Id))
@@ -68,7 +68,7 @@ namespace WebApplication.Api.Configuration.AutoMapper
                         opts.MapFrom(src => src.TypeName))
                 .ReverseMap();
 
-            CreateMap<ConfigurationTypeViewModel, ConfigurationTypeDtoModel>()
+            CreateMap<ConfigurationTypeModel, ConfigurationTypeDtoModel>()
                 .ForMember(dest => dest.Id,
                     opts =>
                         opts.MapFrom(src => src.Id))
@@ -79,7 +79,7 @@ namespace WebApplication.Api.Configuration.AutoMapper
 
             CreateMap<LaptopsDtoModel, Laptop>().ReverseMap();
             
-            CreateMap<LaptopsViewModel, LaptopsDtoModel>()
+            CreateMap<LaptopsModel, LaptopsDtoModel>()
                 .ForMember(dest => dest.Brand,
                     opts =>
                         opts.Ignore())
@@ -89,10 +89,10 @@ namespace WebApplication.Api.Configuration.AutoMapper
                 .ReverseMap();
             
             CreateMap<BrandDtoModel, Brand>().ReverseMap();
-            CreateMap<BrandViewModel, BrandDtoModel>().ReverseMap();
+            CreateMap<BrandModel, BrandDtoModel>().ReverseMap();
             CreateMap<LaptopConfigurationDtoView, LaptopConfiguration>().ReverseMap();
 
-            CreateMap<LaptopConfigurationViewModel, LaptopConfigurationDtoView>()
+            CreateMap<LaptopConfigurationModel, LaptopConfigurationDtoView>()
                 .ForMember(dest => dest.ConfigurationItem,
                     opts =>
                         opts.Ignore())
@@ -110,7 +110,7 @@ namespace WebApplication.Api.Configuration.AutoMapper
                         opts.MapFrom(src => src.Laptop))
                 .ReverseMap();
             
-            CreateMap<BasketViewModel, BasketDtoModel>().ReverseMap();
+            CreateMap<BasketModel, BasketDtoModel>().ReverseMap();
         }
     }
 }

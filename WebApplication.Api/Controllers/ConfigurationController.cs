@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Api.Infrastructure.Errors;
-using WebApplication.Api.ViewModels;
+using WebApplication.Api.Models;
 using WebApplication.Services.DtoModels;
 using WebApplication.Services.Services.ConfigurationService;
 
@@ -29,10 +29,10 @@ namespace WebApplication.Api.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<List<ConfigurationItemViewModel>>> GetAllConfigurationItems()
+        public async Task<ActionResult<List<ConfigurationItemModel>>> GetAllConfigurationItems()
         {
             var data = await _configurationService.GetAllConfigurationItems();
-            var view = _mapper.Map<List<ConfigurationItemDtoModel>, List<ConfigurationItemViewModel>>(data);
+            var view = _mapper.Map<List<ConfigurationItemDtoModel>, List<ConfigurationItemModel>>(data);
             return Ok(view);
         }
 
@@ -44,14 +44,14 @@ namespace WebApplication.Api.Controllers
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<ConfigurationItemViewModel>> CreateConfigurationItem(ConfigurationItemViewModel model)
+        public async Task<ActionResult<ConfigurationItemModel>> CreateConfigurationItem(ConfigurationItemModel model)
         {
             var dto = _mapper.Map<ConfigurationItemDtoModel>(model);
             var data = await _configurationService.CreateConfigurationItem(dto);
             if (data == null) return BadRequest(Errors.AddErrorToModelState(ErrorsModelConst.ObjectIsExistKey, 
                 ErrorsModelConst.ObjectIsExist + ": " + model.Name
                 , ModelState));
-            var view = _mapper.Map<ConfigurationItemViewModel>(data);
+            var view = _mapper.Map<ConfigurationItemModel>(data);
             return Ok(view);
         }
     }
