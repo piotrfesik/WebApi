@@ -48,8 +48,8 @@ namespace WebApplication.Api.Controllers
         public async Task<ActionResult<List<LaptopsViewModel>>> GetLaptopList()
         {
             var data = await _shoppingBasketService.GetLaptopList();
-            //var view = _mapper.Map<List<LaptopsViewModel>>(data);
-            return Ok(data);
+            var view = _mapper.Map<List<LaptopsViewModel>>(data);
+            return Ok(view);
         }
 
         /// <summary>
